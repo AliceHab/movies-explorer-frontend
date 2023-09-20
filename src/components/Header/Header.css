@@ -1,0 +1,303 @@
+.header {
+  display: flex;
+  justify-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 70px 0px;
+  background: #465dff;
+}
+
+.header_theme_ligth {
+  background: #fff;
+}
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  margin: 18px 0px;
+}
+
+.header__nav {
+  margin: 28px 0px;
+}
+
+.header__list {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header__links {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+  transition: border-bottom-color 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.header__link-to-main {
+  display: none;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+  transition: border-bottom-color 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.header__links:hover {
+  border-bottom-color: #fff;
+}
+
+.header__btn {
+  display: flex;
+  gap: 28px;
+}
+
+.header__button_type_account {
+  padding: 0px 20px;
+  border-radius: 20px;
+  border: none;
+  height: 32px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.header__button_type_account:hover {
+  opacity: 0.8;
+}
+
+.header__button_type_login {
+  padding: 0px 20px;
+  border-radius: 3px;
+  border: none;
+  height: 32px;
+  background: #2be080;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.header__button_type_login:hover {
+  opacity: 0.8;
+}
+
+.header__button_type_register {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  vertical-align: middle;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.header__button_type_register:hover {
+  opacity: 0.8;
+}
+
+.header__burger {
+  display: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.header__burger-line,
+.header__burger:before,
+.header__burger:after {
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.header__burger-line {
+  background-color: #fff;
+  top: 9px;
+}
+
+.header__burger:before,
+.header__burger:after {
+  content: '';
+  background-color: #fff;
+}
+
+.header__burger:before {
+  top: 0;
+}
+
+.header__burger:after {
+  bottom: 0;
+}
+
+.header__burger.active .header__burger-line,
+.header__burger.active:before,
+.header__burger.active:after {
+  background-color: #000;
+}
+
+.header__burger.active .header__burger-line {
+  transform: scale(0);
+}
+
+.header__burger.active:before {
+  transform: rotate(45deg);
+  top: 9px;
+}
+
+.header__burger.active:after {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+
+@media (max-width: 780px) {
+  .header {
+    padding: 0px 30px 0px;
+  }
+
+  .header__button_type_account {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    /* right: 209px;
+    top: 901px; */
+    transition: all 0.3s;
+  }
+
+  .header__button_type_account_active {
+    position: absolute;
+    right: 27vw;
+    top: 88vh;
+    padding: 0px 20px;
+    border-radius: 20px;
+    border: none;
+    height: 32px;
+    transition: all 0.5s;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header__nav {
+    opacity: 0;
+    visibility: hidden;
+    margin: 0;
+    position: absolute;
+    width: 66vw;
+    height: 0;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transition: all 0.3s;
+  }
+
+  .header__nav_active {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100vh;
+    height: 100vh;
+  }
+
+  .header__list {
+    margin-top: 160px;
+    margin-left: 12px;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .header__links {
+    display: block;
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .header__link-to-main {
+    display: block;
+    display: block;
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .header__nav-link {
+    font-size: 14px;
+  }
+  .header__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+  }
+  .header__burger-line {
+    display: block;
+    position: relative;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: 0px 13px 0px;
+  }
+
+  .header__list {
+    margin-top: 159px;
+    margin-left: -12px;
+    gap: 23px;
+  }
+
+  .header__button_type_account_active {
+    right: 30vw;
+    top: 80vh;
+  }
+
+  .header__burger {
+    width: 23px;
+  }
+
+  .header__button_type_login {
+    font-size: 10px;
+    height: 26px;
+    padding: 0px 12px;
+  }
+
+  .header__nav {
+    width: 100vw;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transition: all 0.3s;
+  }
+
+  .header__nav_active {
+    max-height: 100vh;
+    height: 100vh;
+  }
+}
