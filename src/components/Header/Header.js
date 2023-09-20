@@ -1,12 +1,16 @@
 import logo from '../../images/logo.svg';
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Header({ active, setActive }) {
   // Выводим компонент на определнных страницах
   const location = useLocation();
   const { pathname } = location;
-  const isMovieOrMain = pathname === '/movie' || pathname === '/' || pathname === '/profile';
+  const isMovieOrMain =
+    pathname === '/movie' ||
+    pathname === '/saved-movies' ||
+    pathname === '/' ||
+    pathname === '/profile';
 
   // Определяем цвет шапки
   const isLigthTheme = pathname === '/movie' || pathname === '/profile';
@@ -29,11 +33,13 @@ function Header({ active, setActive }) {
   // Кнопки и бургер
   const accountBtn = (
     <>
-      <input
-        type="submit"
-        className={active ? 'header__button_type_account_active' : 'header__button_type_account'}
-        value="Аккаунт"
-      />
+      <a href="/profile">
+        <input
+          type="submit"
+          className={active ? 'header__button_type_account_active' : 'header__button_type_account'}
+          value="Аккаунт"
+        />
+      </a>
       <div
         className={`header__burger ${isActiveBurger ? 'active' : ''}`}
         onClick={() => {
@@ -46,14 +52,18 @@ function Header({ active, setActive }) {
     </>
   );
   const loginBtn = (
-    <input
-      type="submit"
-      className={active ? 'header__button_type_account_active' : 'header__button_type_login'}
-      value="Войти"
-    />
+    <a href="/signin">
+      <input
+        type="submit"
+        className={active ? 'header__button_type_account_active' : 'header__button_type_login'}
+        value="Войти"
+      />
+    </a>
   );
   const registerBtn = (
-    <input type="submit" className="header__button_type_register" value="Регистрация" />
+    <a href="/signup">
+      <input type="submit" className="header__button_type_register" value="Регистрация" />
+    </a>
   );
   const nonAuthBtn = (
     <div className="header__btn">
@@ -63,24 +73,32 @@ function Header({ active, setActive }) {
   );
 
   // Временна переменная, заменяющая проверку авторизации
-  let linkText = 'sdf';
+  let linkText = '';
 
   return (
     <>
       {isMovieOrMain && (
         <header className={'header ' + (isLigthTheme ? 'header_theme_ligth' : '')}>
-          <img src={logo} alt="Лого" className="header__logo" />
+          <a href="/">
+            <img src={logo} alt="Лого" className="header__logo" />
+          </a>
           {linkText && (
             <nav className={'header__nav ' + (active ? 'header__nav_active' : '')}>
               <ul className="header__list">
                 <li>
-                  <p className="header__link-to-main">Главная</p>
+                  <a href="/" className="header__link-to-main">
+                    Главная
+                  </a>
                 </li>
                 <li>
-                  <p className="header__links">Фильмы</p>
+                  <a href="/movie" className="header__links">
+                    Фильмы
+                  </a>
                 </li>
                 <li>
-                  <p className="header__links">Сохраненные фильмы</p>
+                  <a href="/saved-movies" className="header__links">
+                    Сохраненные фильмы
+                  </a>
                 </li>
               </ul>
             </nav>

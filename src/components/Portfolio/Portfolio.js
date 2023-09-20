@@ -9,6 +9,7 @@ function Portfolio() {
           className="portfolio__link"
           href="https://github.com/AliceHab/how-to-learn"
           target="_blank"
+          rel="noreferrer"
         >
           Статичный сайт
         </a>
@@ -19,6 +20,7 @@ function Portfolio() {
           className="portfolio__link"
           href="https://github.com/AliceHab/russian-travel"
           target="_blank"
+          rel="noreferrer"
         >
           Адаптивный сайт
         </a>
@@ -29,6 +31,7 @@ function Portfolio() {
           className="portfolio__link"
           href="https://github.com/AliceHab/react-mesto-auth"
           target="_blank"
+          rel="noreferrer"
         >
           Одностраничное приложение
         </a>
