@@ -16,7 +16,9 @@
   line-height: normal;
 }
 
-.footer__line {
+.footer__copyrigth:after {
+  content: '';
+  display: block;
   margin-top: 20px;
   height: 1px;
   background: #e8e8e8;
@@ -42,6 +44,12 @@
   font-weight: 400;
   line-height: normal;
   margin: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.footer__text:hover {
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

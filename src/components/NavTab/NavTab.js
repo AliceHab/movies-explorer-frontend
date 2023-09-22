@@ -3,9 +3,9 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 
 function NavTab() {
   return (
-    <section className="navtab">
+    <section className="nav-tab">
       <nav>
-        <ul className="navtab__list">
+        <ul className="nav-tab__list">
           <li>
             <ScrollLink
               to="about-project"
@@ -14,7 +14,7 @@ function NavTab() {
               hashSpy={true}
               offset={50}
               duration={500}
-              className="navtab__link"
+              className="nav-tab__link"
             >
               О проекте
             </ScrollLink>
@@ -27,7 +27,7 @@ function NavTab() {
               hashSpy={true}
               offset={50}
               duration={500}
-              className="navtab__link"
+              className="nav-tab__link"
             >
               Технологии
             </ScrollLink>
@@ -40,7 +40,7 @@ function NavTab() {
               hashSpy={true}
               offset={50}
               duration={500}
-              className="navtab__link"
+              className="nav-tab__link"
             >
               Студент
             </ScrollLink>

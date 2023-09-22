@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -22,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/movie" element={<Movies />} />
-            <Route path="/saved-movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/signin" element={<Login />} />
             <Route path="/profile" element={<Profile />} />

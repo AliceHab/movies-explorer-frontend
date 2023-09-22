@@ -6,7 +6,8 @@
   align-items: center;
 }
 
-.promo__logo {
+.promo:after {
+  content: '';
   background: no-repeat url('../../images/promo__logo.png');
   width: 320px;
   height: 320px;
@@ -16,6 +17,9 @@
 }
 
 .promo__title {
+  min-height: 100px;
+  max-height: 300px;
+  overflow: hidden;
   margin: 0;
   text-align: center;
   font-size: 50px;
@@ -32,7 +36,7 @@
   .promo {
     height: 784px;
   }
-  .promo__logo {
+  .promo:after {
     padding-bottom: 19px;
   }
   .promo__title {
@@ -44,7 +48,7 @@
   .promo {
     height: 570px;
   }
-  .promo__logo {
+  .promo:after {
     width: 250px;
     height: 250px;
     margin-bottom: 38px;

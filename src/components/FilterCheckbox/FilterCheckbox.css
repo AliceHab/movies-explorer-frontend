@@ -1,11 +1,11 @@
 .search-form__switch-wrapper {
   align-self: center;
-  margin-top: 28px;
+  margin-top: 38px;
   display: flex;
   align-items: center;
 }
 
-.search-form__ext-switch {
+.search-form__text-switch {
   color: #000;
   font-size: 14px;
   font-style: normal;

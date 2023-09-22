@@ -2,18 +2,39 @@ import logo from '../../images/logo.svg';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+const Logo = () => {
+  return (
+    <a href="/">
+      <img src={logo} alt="Лого" className="header__logo" />
+    </a>
+  );
+};
+
+const handleClickRedirect = (url) => {
+  window.location.href = url;
+};
+
 function Header({ active, setActive }) {
-  // Выводим компонент на определнных страницах
   const location = useLocation();
   const { pathname } = location;
+
+  // Определяем цвет шапки
+  const isLightTheme =
+    pathname === '/movie' || pathname === '/profile' || pathname === '/saved-movies';
+
+  // Открытие меню
+  const [isActiveBurger, setIsActiveBurger] = React.useState(false);
+
+  const toggleActive = () => {
+    setIsActiveBurger(!isActiveBurger);
+  };
+
+  // Выводим на определенных страницах
   const isMovieOrMain =
     pathname === '/movie' ||
     pathname === '/saved-movies' ||
     pathname === '/' ||
     pathname === '/profile';
-
-  // Определяем цвет шапки
-  const isLigthTheme = pathname === '/movie' || pathname === '/profile';
 
   // Запрещает прокручивание, когда открыто меню
   React.useEffect(() => {
@@ -24,22 +45,15 @@ function Header({ active, setActive }) {
     }
   }, [active]);
 
-  const [isActiveBurger, setIsActiveBurger] = React.useState(false);
-
-  const toggleActive = () => {
-    setIsActiveBurger(!isActiveBurger);
-  };
-
   // Кнопки и бургер
   const accountBtn = (
     <>
-      <a href="/profile">
-        <input
-          type="submit"
-          className={active ? 'header__button_type_account_active' : 'header__button_type_account'}
-          value="Аккаунт"
-        />
-      </a>
+      <input
+        type="submit"
+        className={'header__button-account'}
+        value="Аккаунт"
+        onClick={() => handleClickRedirect('/profile')}
+      />
       <div
         className={`header__burger ${isActiveBurger ? 'active' : ''}`}
         onClick={() => {
@@ -52,18 +66,20 @@ function Header({ active, setActive }) {
     </>
   );
   const loginBtn = (
-    <a href="/signin">
-      <input
-        type="submit"
-        className={active ? 'header__button_type_account_active' : 'header__button_type_login'}
-        value="Войти"
-      />
-    </a>
+    <input
+      type="submit"
+      className={active ? 'header__button-account_active' : 'header__button-login'}
+      value="Войти"
+      onClick={() => handleClickRedirect('/signin')}
+    />
   );
   const registerBtn = (
-    <a href="/signup">
-      <input type="submit" className="header__button_type_register" value="Регистрация" />
-    </a>
+    <input
+      type="submit"
+      className="header__button-register"
+      value="Регистрация"
+      onClick={() => handleClickRedirect('/signup')}
+    />
   );
   const nonAuthBtn = (
     <div className="header__btn">
@@ -73,34 +89,52 @@ function Header({ active, setActive }) {
   );
 
   // Временна переменная, заменяющая проверку авторизации
-  let linkText = '';
+  let linkText = 'ит';
 
   return (
     <>
       {isMovieOrMain && (
-        <header className={'header ' + (isLigthTheme ? 'header_theme_ligth' : '')}>
-          <a href="/">
-            <img src={logo} alt="Лого" className="header__logo" />
-          </a>
+        <header className={'header ' + (isLightTheme ? 'header_theme_ligth' : '')}>
+          <Logo />
           {linkText && (
             <nav className={'header__nav ' + (active ? 'header__nav_active' : '')}>
               <ul className="header__list">
                 <li>
-                  <a href="/" className="header__link-to-main">
+                  <a
+                    href="/"
+                    className={
+                      'header__links_main ' + (isLightTheme ? 'header__links_theme_light' : '')
+                    }
+                  >
                     Главная
                   </a>
                 </li>
                 <li>
-                  <a href="/movie" className="header__links">
+                  <a
+                    href="/movie"
+                    className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
+                  >
                     Фильмы
                   </a>
                 </li>
                 <li>
-                  <a href="/saved-movies" className="header__links">
+                  <a
+                    href="/saved-movies"
+                    className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
+                  >
                     Сохраненные фильмы
                   </a>
                 </li>
               </ul>
+              <input
+                type="submit"
+                className={
+                  'header__button-account-nav ' +
+                  (active ? 'header__button-account-nav_active' : 'header__button-account-nav')
+                }
+                value="Аккаунт"
+                onClick={() => handleClickRedirect('/profile')}
+              />
             </nav>
           )}
           {linkText ? accountBtn : nonAuthBtn}

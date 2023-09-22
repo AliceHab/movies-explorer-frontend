@@ -13,7 +13,7 @@ function Footer() {
     <>
       {isMovieOrMain && (
         <footer className="footer">
-          <p className="footer__copyrigth">Учебный проект Яндекс.Практикум х BeatFilm.</p>
+          <h2 className="footer__copyrigth">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
           <div className="footer__line"></div>
           <div className="footer__bottom">
             <p className="footer__text">© {date.getFullYear()}</p>

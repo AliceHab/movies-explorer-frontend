@@ -43,6 +43,7 @@
 }
 
 .profile__input {
+  min-height: 14px;
   border: none;
   width: 180px;
   color: #000;
@@ -55,7 +56,9 @@
 
 .profile__input:focus {
   outline: none;
-  border: none;
+  /* border: none; */
+  background-color: #f9f9f9;
+  border-radius: 5px;
 }
 
 .profile__button {
@@ -69,6 +72,12 @@
   border: none;
   background: none;
   cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.profile__button:hover {
+  opacity: 0.6;
 }
 
 .profile__back {
@@ -80,11 +89,46 @@
   font-weight: 500;
   line-height: normal;
   text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.profile__back:hover {
+  opacity: 0.6;
+}
+
+.profile__input-error {
+  margin-top: 220px;
+  display: block;
+  color: #ff004c;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.profile__button-save {
+  margin-top: 20px;
+  width: 410px;
+  padding: 14px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  border-radius: 3px;
+  background: #3456f3;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
   .profile__title {
-    margin: 175px 0 0;
+    /* margin: 175px 0 0; */
   }
 
   .profile__form {
@@ -96,7 +140,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 500px) {
   .profile__title {
     margin: 10px 0 0;
   }
@@ -104,6 +148,10 @@
   .profile__form {
     width: 260px;
     margin-top: 65px;
+  }
+
+  .profile__button-save {
+    width: 260px;
   }
 
   .profile__button {

@@ -13,7 +13,6 @@ function Portfolio() {
         >
           Статичный сайт
         </a>
-        <div className="portfolio__arrow">↗</div>
       </div>
       <div className="portfolio__block">
         <a
@@ -24,7 +23,6 @@ function Portfolio() {
         >
           Адаптивный сайт
         </a>
-        <div className="portfolio__arrow">↗</div>
       </div>
       <div className="portfolio__block">
         <a
@@ -35,7 +33,6 @@ function Portfolio() {
         >
           Одностраничное приложение
         </a>
-        <div className="portfolio__arrow">↗</div>
       </div>
     </section>
   );

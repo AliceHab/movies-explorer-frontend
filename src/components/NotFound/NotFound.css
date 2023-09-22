@@ -1,6 +1,9 @@
 .not-found {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 }
 
 .not-found__title {
@@ -32,6 +35,13 @@
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.not-found__back:hover {
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

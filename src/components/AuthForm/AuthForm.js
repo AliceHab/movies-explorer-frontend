@@ -4,10 +4,12 @@ import logo from '../../images/logo.svg';
 
 function AuthForm({ buttonText, titleText, link, linkText, linkTitle, ...props }) {
   return (
-    <div className="auth-form">
+    <main className="auth-form">
       <div className="auth-form__wrapper">
-        <img src={logo} alt="Лого" className="auth-form__logo" />
-        <p className="auth-form__title">{titleText}</p>
+        <a href="/">
+          <img src={logo} alt="Лого" className="auth-form__logo" />
+        </a>
+        <h1 className="auth-form__title">{titleText}</h1>
         <form className="auth-form__form">
           {props.children}
           <input type="submit" className="auth-form__button" value={buttonText} />
@@ -21,7 +23,7 @@ function AuthForm({ buttonText, titleText, link, linkText, linkTitle, ...props }
           )}
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -16,7 +16,7 @@ function SearchForm() {
         <input className="search-form__search-btn" type="submit" value="ㅤ" />
       </form>
       <FilterCheckbox text="Короткометражки" />
-      <div className='search-form__bottom-line'></div>
+      {/* <div className='search-form__bottom-line'></div> */}
     </section>
   );
 }

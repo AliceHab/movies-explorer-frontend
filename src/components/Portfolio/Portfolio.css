@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 15px 70px 110px;
+  padding: 2px 70px 95px;
   background: #f5f5f5;
 }
 
@@ -24,6 +24,10 @@
 }
 
 .portfolio__link {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 500px;
   text-decoration: none;
   color: #000;
   font-size: 30px;
@@ -31,9 +35,15 @@
   font-weight: 400;
   line-height: 50px;
   letter-spacing: -1.2px;
+  transition: opacity 0.3s;
 }
 
-.portfolio__arrow {
+.portfolio__link:hover {
+  opacity: 0.6;
+}
+
+.portfolio__block::after {
+  content: '↗';
   color: #000;
   font-size: 30px;
   font-style: normal;
