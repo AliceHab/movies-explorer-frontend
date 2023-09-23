@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm() {
   return (
     <section className="search-form">
-      <form className="search-form__form">
+      <form className="search-form__form" name="search">
         <input
           type="text"
           id="name"

@@ -34,9 +34,16 @@
   opacity: 0.6;
 }
 
+.movies-card-list__divider {
+  height: 150px;
+}
+
 @media (max-width: 1000px) {
   .movies-card-list {
     padding: 0px 35px 0;
+  }
+  .movies-card-list__divider {
+    height: 157px;
   }
   .movies-card-list__container {
     grid-template-columns: repeat(2, 1fr);
@@ -53,6 +60,9 @@
 @media (max-width: 600px) {
   .movies-card-list {
     padding: 0px 10px 0;
+  }
+  .movies-card-list__divider {
+    height: 170px;
   }
   .movies-card-list__container {
     grid-template-columns: repeat(1, 1fr);

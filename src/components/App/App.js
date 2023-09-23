@@ -8,6 +8,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
+import Navigation from '../Navigation/Navigation';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
+          <Navigation isOpen={menuActive} />
           <Footer />
         </div>
       </div>

@@ -61,6 +61,7 @@
 @media (max-width: 360px) {
   .footer {
     padding: 80px 20px 20px;
+    background: #fff;
   }
   .footer__copyrigth {
     font-size: 12px;

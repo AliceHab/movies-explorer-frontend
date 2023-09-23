@@ -8,6 +8,7 @@ function SavedMovies() {
     <>
       <SearchForm />
       <MoviesCardList />
+      <div className="movies-card-list__divider"></div>
     </>
   );
 }

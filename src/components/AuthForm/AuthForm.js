@@ -10,7 +10,7 @@ function AuthForm({ buttonText, titleText, link, linkText, linkTitle, ...props }
           <img src={logo} alt="Лого" className="auth-form__logo" />
         </a>
         <h1 className="auth-form__title">{titleText}</h1>
-        <form className="auth-form__form">
+        <form className="auth-form__form" name="authForm">
           {props.children}
           <input type="submit" className="auth-form__button" value={buttonText} />
           {link && (

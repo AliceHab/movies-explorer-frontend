@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 2px 70px 95px;
+  padding: 2px 70px 100px;
   background: #f5f5f5;
 }
 
@@ -87,7 +87,7 @@
   .portfolio__block:first-of-type {
     margin-top: 40px;
   }
-  .portfolio__arrow {
+  .portfolio__block::after {
     font-size: 18px;
     line-height: 28px;
   }

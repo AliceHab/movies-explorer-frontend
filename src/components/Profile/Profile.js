@@ -22,7 +22,7 @@ function Profile() {
   return (
     <div className="profile">
       <h1 className="profile__title">Привет, Виталий!</h1>
-      <form className="profile__form">
+      <form className="profile__form" name="profile">
         <div className="profile__line">
           <label htmlFor="name" className="profile__label">
             Имя

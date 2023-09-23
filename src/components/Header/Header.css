@@ -60,14 +60,6 @@
 
 .header__links_main {
   display: none;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0);
-  transition: border-bottom-color 0.3s;
-  box-sizing: border-box;
-  cursor: pointer;
 }
 
 .header__links:hover {
@@ -145,27 +137,39 @@
   display: none;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
 }
 
-.header__burger-line,
+.header__burger-line {
+  height: 1.6px;
+}
+
 .header__burger:before,
 .header__burger:after {
   position: absolute;
+  content: '';
   width: 100%;
   height: 1.5px;
   left: 0;
   transition: all 0.3s;
 }
 
-.header__burger-line {
-  background-color: #fff;
-  top: 9px;
+/* Стили для светлой темы */
+.header__burger-line_light,
+.header__burger_light:before,
+.header__burger_light:after {
+  background-color: #000;
 }
 
-.header__burger:before,
-.header__burger:after {
-  content: '';
+/* Стили для темной темы */
+.header__burger-line_dark,
+.header__burger_dark:before,
+.header__burger_dark:after {
   background-color: #fff;
+}
+
+.header__burger-line {
+  top: 9px;
 }
 
 .header__burger:before {
@@ -176,22 +180,23 @@
   bottom: 0;
 }
 
-.header__burger.active .header__burger-line,
-.header__burger.active:before,
-.header__burger.active:after {
+.header__burger_active .header__burger-line,
+.header__burger_active:before,
+.header__burger_active:after {
   background-color: #000;
 }
 
-.header__burger.active .header__burger-line {
+/* Анимация бургера */
+.header__burger_active .header__burger-line {
   transform: scale(0);
 }
 
-.header__burger.active:before {
+.header__burger_active:before {
   transform: rotate(45deg);
   top: 9px;
 }
 
-.header__burger.active:after {
+.header__burger_active:after {
   transform: rotate(-45deg);
   bottom: 9px;
 }
@@ -199,6 +204,10 @@
 @media (max-width: 780px) {
   .header {
     padding: 0px 30px 0px;
+  }
+
+  .header__nav {
+    display: none;
   }
 
   .header__button-account {
@@ -209,79 +218,11 @@
     gap: 22px;
   }
 
-  .header__links_active {
-    border-bottom: solid 1px #000;
-  }
-
-  /* .header__button-account_active {
-    position: absolute;
-    right: 27vw;
-    top: 88vh;
-    padding: 0px 20px;
-    border-radius: 20px;
-    border: none;
-    height: 32px;
-    transition: all 0.5s;
-    cursor: pointer;
-    font-size: 14px;
-    opacity: 1;
-    visibility: visible;
-  } */
-
-  .header__nav {
-    opacity: 0;
-    visibility: hidden;
-    margin: 0;
-    position: absolute;
-    width: 66vw;
-    height: 0;
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    background: #fff;
-    transition: all 0.3s;
-  }
-
-  .header__nav_active {
-    opacity: 1;
-    visibility: visible;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header__button-account-nav {
-    margin-bottom: 90px;
-  }
-
-  .header__list {
-    margin-top: 160px;
-    padding: 0;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-  }
-
   .header__links {
     color: #000;
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-
-  .header__links_main {
-    display: block;
-    display: block;
-    color: #000;
-    text-align: center;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
+    font-family: 'Inter', 'Arial', 'sans-serif';
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -292,6 +233,7 @@
     font-size: 14px;
   }
   .header__burger {
+    z-index: 5;
     display: block;
     position: relative;
     width: 30px;
@@ -308,27 +250,12 @@
     padding: 0px 13px 0px;
   }
 
-  .header__list {
-    margin-top: 159px;
-    margin-left: -12px;
-    gap: 23px;
-  }
-
   .header__btn {
     gap: 11px;
   }
 
   .header__button-register {
     font-size: 10px;
-  }
-
-  /* .header__button-account_active {
-    right: 30vw;
-    top: 80vh;
-  } */
-
-  .header__button-account-nav {
-    margin-bottom: 45px;
   }
 
   .header__burger {
@@ -339,18 +266,5 @@
     font-size: 10px;
     height: 26px;
     padding: 0px 12px;
-  }
-
-  .header__nav {
-    width: 100vw;
-    top: 0;
-    right: 0;
-    background: #fff;
-    transition: all 0.3s;
-  }
-
-  .header__nav_active {
-    max-height: 100vh;
-    height: 100vh;
   }
 }

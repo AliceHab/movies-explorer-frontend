@@ -15,6 +15,10 @@ const handleClickRedirect = (url) => {
 };
 
 function Header({ active, setActive }) {
+  const toggleActive = () => {
+    setActive(!active);
+  };
+
   const location = useLocation();
   const { pathname } = location;
 
@@ -22,28 +26,12 @@ function Header({ active, setActive }) {
   const isLightTheme =
     pathname === '/movie' || pathname === '/profile' || pathname === '/saved-movies';
 
-  // Открытие меню
-  const [isActiveBurger, setIsActiveBurger] = React.useState(false);
-
-  const toggleActive = () => {
-    setIsActiveBurger(!isActiveBurger);
-  };
-
   // Выводим на определенных страницах
   const isMovieOrMain =
     pathname === '/movie' ||
     pathname === '/saved-movies' ||
     pathname === '/' ||
     pathname === '/profile';
-
-  // Запрещает прокручивание, когда открыто меню
-  React.useEffect(() => {
-    if (active) {
-      document.body.classList.add('body_no-scroll');
-    } else {
-      document.body.classList.remove('body_no-scroll');
-    }
-  }, [active]);
 
   // Кнопки и бургер
   const accountBtn = (
@@ -55,16 +43,20 @@ function Header({ active, setActive }) {
         onClick={() => handleClickRedirect('/profile')}
       />
       <div
-        className={`header__burger ${isActiveBurger ? 'active' : ''}`}
-        onClick={() => {
-          setActive(!active);
-          toggleActive();
-        }}
+        className={`header__burger ${active ? 'header__burger_active' : ''} ${
+          isLightTheme ? 'header__burger_light' : 'header__burger_dark'
+        }`}
+        onClick={toggleActive}
       >
-        <span className="header__burger-line"></span>
+        <span
+          className={`header__burger-line ${
+            isLightTheme ? 'header__burger-line_light' : 'header__burger-line_dark'
+          }`}
+        ></span>
       </div>
     </>
   );
+
   const loginBtn = (
     <input
       type="submit"
@@ -73,6 +65,7 @@ function Header({ active, setActive }) {
       onClick={() => handleClickRedirect('/signin')}
     />
   );
+
   const registerBtn = (
     <input
       type="submit"
@@ -81,6 +74,7 @@ function Header({ active, setActive }) {
       onClick={() => handleClickRedirect('/signup')}
     />
   );
+
   const nonAuthBtn = (
     <div className="header__btn">
       {registerBtn}
@@ -89,7 +83,7 @@ function Header({ active, setActive }) {
   );
 
   // Временна переменная, заменяющая проверку авторизации
-  let linkText = 'ит';
+  let linkText = '';
 
   return (
     <>
@@ -97,18 +91,8 @@ function Header({ active, setActive }) {
         <header className={'header ' + (isLightTheme ? 'header_theme_ligth' : '')}>
           <Logo />
           {linkText && (
-            <nav className={'header__nav ' + (active ? 'header__nav_active' : '')}>
+            <nav className={'header__nav'}>
               <ul className="header__list">
-                <li>
-                  <a
-                    href="/"
-                    className={
-                      'header__links_main ' + (isLightTheme ? 'header__links_theme_light' : '')
-                    }
-                  >
-                    Главная
-                  </a>
-                </li>
                 <li>
                   <a
                     href="/movie"
@@ -126,15 +110,6 @@ function Header({ active, setActive }) {
                   </a>
                 </li>
               </ul>
-              <input
-                type="submit"
-                className={
-                  'header__button-account-nav ' +
-                  (active ? 'header__button-account-nav_active' : 'header__button-account-nav')
-                }
-                value="Аккаунт"
-                onClick={() => handleClickRedirect('/profile')}
-              />
             </nav>
           )}
           {linkText ? accountBtn : nonAuthBtn}
