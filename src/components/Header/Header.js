@@ -14,7 +14,7 @@ const handleClickRedirect = (url) => {
   window.location.href = url;
 };
 
-function Header({ active, setActive }) {
+function Header({ active, setActive, isLoggedIn }) {
   const toggleActive = () => {
     setActive(!active);
   };
@@ -82,16 +82,16 @@ function Header({ active, setActive }) {
     </div>
   );
 
-  // Временна переменная, заменяющая проверку авторизации
-  let linkText = '';
+  // // Временна переменная, заменяющая проверку авторизации
+  // let linkText = '';
 
   return (
     <>
       {isMovieOrMain && (
         <header className={'header ' + (isLightTheme ? 'header_theme_ligth' : '')}>
           <Logo />
-          {linkText && (
-            <nav className={'header__nav'}>
+          {isLoggedIn && (
+            <nav className="header__nav">
               <ul className="header__list">
                 <li>
                   <a
@@ -112,7 +112,7 @@ function Header({ active, setActive }) {
               </ul>
             </nav>
           )}
-          {linkText ? accountBtn : nonAuthBtn}
+          {isLoggedIn ? accountBtn : nonAuthBtn}
         </header>
       )}
     </>
