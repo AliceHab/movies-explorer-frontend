@@ -40,34 +40,33 @@ function SavedMovies() {
     setFilteredMovies(filterMovies(savedMovies, values.query, isShort));
   }
 
-  function setLocalStorage() {
-    localStorage.setItem('querySavedMovie', values.query);
-    localStorage.setItem('isShortSavedMovie', isShort);
-  }
+  // function setLocalStorage() {
+  //   localStorage.setItem('querySavedMovie', values.query);
+  //   localStorage.setItem('isShortSavedMovie', isShort);
+  // }
 
-  function getLocalStorage() {
-    const localStorageQuery = localStorage.getItem('querySavedMovie');
-    const localStorageIsShort = localStorage.getItem('isShortSavedMovie');
+  // function getLocalStorage() {
+  //   const localStorageQuery = localStorage.getItem('querySavedMovie');
+  //   const localStorageIsShort = localStorage.getItem('isShortSavedMovie');
 
-    localStorageQuery && setValues({ query: localStorageQuery });
-    localStorageIsShort && setIsShort(localStorageIsShort);
-  }
+  //   localStorageQuery && setValues({ query: localStorageQuery });
+  //   localStorageIsShort && setIsShort(localStorageIsShort);
+  // }
 
   React.useEffect(() => {
     searchSavedMovies();
   }, [savedMovies]);
 
-  console.log(savedMovies, filteredMovies, 'eh');
-
   React.useEffect(() => {
     getSavedMovies();
-    getLocalStorage();
+    // setFilteredMovies(savedMovies);
+    // getLocalStorage();
     //eslint-disable-next-line
   }, []);
 
-  React.useEffect(() => {
-    setTimeout(() => setLocalStorage(), 500);
-  }, [values.query, isShort]);
+  // React.useEffect(() => {
+  //   setTimeout(() => setLocalStorage(), 500);
+  // }, [values.query, isShort]);
 
   return (
     <>
@@ -81,7 +80,7 @@ function SavedMovies() {
       {isLoading ? (
         <Preloader error={error} />
       ) : (
-        <MoviesCardList refreshList={getSavedMovies} filteredMovies={filteredMovies} />
+        <MoviesCardList refreshList={setFilteredMovies} filteredMovies={filteredMovies} />
       )}
       <div className="movies-card-list__divider"></div>
     </>

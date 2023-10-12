@@ -1,12 +1,12 @@
 import logo from '../../images/logo.svg';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const Logo = () => {
   return (
-    <a href="/">
+    <Link to="/">
       <img src={logo} alt="Лого" className="header__logo" />
-    </a>
+    </Link>
   );
 };
 
@@ -24,11 +24,11 @@ function Header({ active, setActive, isLoggedIn }) {
 
   // Определяем цвет шапки
   const isLightTheme =
-    pathname === '/movie' || pathname === '/profile' || pathname === '/saved-movies';
+    pathname === '/movies' || pathname === '/profile' || pathname === '/saved-movies';
 
   // Выводим на определенных страницах
   const isMovieOrMain =
-    pathname === '/movie' ||
+    pathname === '/movies' ||
     pathname === '/saved-movies' ||
     pathname === '/' ||
     pathname === '/profile';
@@ -94,20 +94,20 @@ function Header({ active, setActive, isLoggedIn }) {
             <nav className="header__nav">
               <ul className="header__list">
                 <li>
-                  <a
-                    href="/movie"
+                  <Link
+                    to="/movies"
                     className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
                   >
                     Фильмы
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/saved-movies"
+                  <Link
+                    to="/saved-movies"
                     className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
                   >
                     Сохраненные фильмы
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

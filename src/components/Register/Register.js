@@ -5,33 +5,52 @@ import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import api from '../../utils/MainApi';
 
-function Register() {
+function Register({ setIsLogged, isLoggedIn }) {
+  React.useEffect(() => {
+    if (isLoggedIn === true) {
+      navigate('/movies', { replace: true });
+    }
+  }, [isLoggedIn]);
+
   const { values, handleChange, errors, isValid, resetForm } = useForm({
     email: '',
     password: '',
     name: '',
   });
-
+  const [isFetching, setIsFetching] = React.useState(false);
   const [fetchError, setFetchError] = React.useState('');
 
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsFetching(true);
 
     api
       .registerUser(values.password, values.email, values.name)
       .then((res) => {
         if (res) {
-          // setIsRegister(true);
-          // console.log(res);
-          setTimeout(() => {
-            navigate('/signin', { replace: true });
-          }, 2000);
+          api
+            .loginUser(values.password, values.email)
+            .then((res) => {
+              if (res) {
+                setIsLogged(true);
+                setTimeout(() => {
+                  navigate('/movies', { replace: true });
+                }, 2000);
+              }
+            })
+            .catch((err) => {
+              setIsLogged(false);
+              console.error(err);
+            })
+            .finally(() => {
+              resetForm();
+              setIsFetching(false);
+            });
         }
       })
       .catch((err) => {
-        // setIsRegister(false);
         setFetchError(err);
         console.error(err);
       })
@@ -50,6 +69,7 @@ function Register() {
       linkTitle={'Войти'}
       isValid={isValid}
       fetchError={fetchError}
+      isFetching={isFetching}
     >
       <label htmlFor="name" className="auth-form__label">
         Имя
@@ -78,6 +98,7 @@ function Register() {
         placeholder="Почта.."
         value={values.email || ''}
         onChange={handleChange}
+        pattern="\S+@\S+\.\S+"
       />
       <span className="auth-form__input-error auth-form__email-input-error">{errors.email}</span>
       <label htmlFor="password" className="auth-form__label">

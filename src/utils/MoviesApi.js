@@ -1,3 +1,5 @@
+import { URL_BEATFILM } from '../utils/constants';
+
 class MoviesApi {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -18,92 +20,12 @@ class MoviesApi {
 
   getBeatfilmMovies() {
     this._headers['Cache-Control'] = 'no-cache';
-    return this._request(
-      `${this._baseUrl}`
-      // {
-      //   headers: this._headers,
-      //   // credentials: 'include',
-      // }
-    );
+    return this._request(`${this._baseUrl}`);
   }
-
-  // editUserInfo(data) {
-  //   return this._request(`${this._baseUrl}/users/me`, {
-  //     method: 'PATCH',
-  //     headers: this._headers,
-  //     credentials: 'include',
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       about: data.about,
-  //     }),
-  //   });
-  // }
-
-  // getInitialCards() {
-  //   return this._request(`${this._baseUrl}/cards`, {
-  //     headers: this._headers,
-  //     credentials: 'include',
-  //   });
-  // }
-
-  // postCard(data) {
-  //   return this._request(`${this._baseUrl}/cards`, {
-  //     method: 'POST',
-  //     credentials: 'include',
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       link: data.link,
-  //     }),
-  //     headers: this._headers,
-  //   });
-  // }
-
-  // editAvatar(data) {
-  //   return this._request(`${this._baseUrl}/users/me/avatar`, {
-  //     method: 'PATCH',
-  //     credentials: 'include',
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       avatar: data.avatar,
-  //     }),
-  //   });
-  // }
-
-  // like(cardID) {
-  //   return this._request(`${this._baseUrl}/cards/${cardID}/likes`, {
-  //     method: 'PUT',
-  //     credentials: 'include',
-  //     headers: this._headers,
-  //   });
-  // }
-
-  // deleteLike(cardID) {
-  //   return this._request(`${this._baseUrl}/cards/${cardID}/likes`, {
-  //     method: 'DELETE',
-  //     credentials: 'include',
-  //     headers: this._headers,
-  //   });
-  // }
-
-  // deleteCard(cardID) {
-  //   return this._request(`${this._baseUrl}/cards/${cardID}`, {
-  //     method: 'DELETE',
-  //     credentials: 'include',
-  //     headers: this._headers,
-  //   });
-  // }
-
-  // changeLikeCardStatus(cardID, isLiked) {
-  //   if (isLiked) {
-  //     return this.like(cardID);
-  //   } else {
-  //     return this.deleteLike(cardID);
-  //   }
-  // }
 }
 
 const moviesApi = new MoviesApi({
-  baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+  baseUrl: URL_BEATFILM,
   headers: {
     'Content-Type': 'application/json',
   },

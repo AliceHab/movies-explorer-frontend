@@ -102,7 +102,11 @@ function Movies() {
       {isLoading ? (
         <Preloader error={error} />
       ) : (
-        <MoviesCardList savedMovies={savedMovies} filteredMovies={filteredMovies} />
+        <MoviesCardList
+          savedMovies={savedMovies}
+          filteredMovies={filteredMovies}
+          getSavedMovies={getSavedMovies}
+        />
       )}
     </main>
   );

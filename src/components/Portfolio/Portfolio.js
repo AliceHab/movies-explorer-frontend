@@ -1,38 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { URL_HOW_TO_LEARN, URL_RUSSIAN_TRAVEL, URL_MESTO } from '../../utils/constants';
 
 function Portfolio() {
   return (
     <section className="portfolio">
       <h2 className="portfolio__title">Портфолио</h2>
       <div className="portfolio__block">
-        <a
-          className="portfolio__link"
-          href="https://github.com/AliceHab/how-to-learn"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link className="portfolio__link" to={URL_HOW_TO_LEARN} target="_blank" rel="noreferrer">
           Статичный сайт
-        </a>
+        </Link>
       </div>
       <div className="portfolio__block">
-        <a
-          className="portfolio__link"
-          href="https://github.com/AliceHab/russian-travel"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link className="portfolio__link" to={URL_RUSSIAN_TRAVEL} target="_blank" rel="noreferrer">
           Адаптивный сайт
-        </a>
+        </Link>
       </div>
       <div className="portfolio__block">
-        <a
-          className="portfolio__link"
-          href="https://github.com/AliceHab/react-mesto-auth"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link className="portfolio__link" to={URL_MESTO} target="_blank" rel="noreferrer">
           Одностраничное приложение
-        </a>
+        </Link>
       </div>
     </section>
   );

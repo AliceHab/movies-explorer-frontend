@@ -6,7 +6,7 @@ import api from '../../utils/MainApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile() {
+function Profile({ updateUserDate }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   function signOut() {
@@ -15,11 +15,27 @@ function Profile() {
   }
 
   const [isEdit, setIsEdit] = React.useState(false);
-
-  const { values, handleChange, setValues } = useForm({
+  const [isFetching, setIsFetching] = React.useState(false);
+  const [editMessage, setEditMessage] = React.useState('');
+  const [editStatus, setEditStatus] = React.useState(false);
+  const [isValueSame, setIsValueSame] = React.useState(false);
+  const { values, handleChange, errors, isValid, setValues } = useForm({
     email: '',
     name: '',
   });
+
+  function checkValuesForChange() {
+    if (values.email !== currentUser.data.email || values.name !== currentUser.data.name) {
+      setIsValueSame(true);
+    } else {
+      setIsValueSame(false);
+    }
+  }
+
+  React.useEffect(() => {
+    checkValuesForChange();
+    console.log(isValueSame);
+  }, [values.email, values.name]);
 
   React.useEffect(() => {
     if (currentUser.data) {
@@ -29,14 +45,28 @@ function Profile() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsFetching(true);
 
-    api.editUserInfo(values.name, values.email).catch((err) => {
-      console.error(err);
-    });
+    api
+      .editUserInfo(values.name, values.email)
+      .then((res) => {
+        setEditMessage('Данные изменены');
+        setEditStatus(true);
+        updateUserDate();
+      })
+      .catch((err) => {
+        console.error(err);
+        setEditMessage('Произошла ошибка');
+        setEditStatus(false);
+      });
 
-    setIsEdit(false);
+    setTimeout(() => {
+      setIsEdit(false);
+      setIsFetching(false);
+    }, 1500);
   }
 
+  // Редактировать
   const editOff = (
     <>
       <input
@@ -50,10 +80,21 @@ function Profile() {
       </Link>
     </>
   );
+  // Сохранить
   const editOn = (
     <>
-      <span className="profile__input-error"></span>
-      <input type="submit" className="profile__button-save" value="Сохранить" />
+      <span className={editStatus ? 'profile__edit-status_success' : 'profile__edit-status_err'}>
+        {editMessage}
+      </span>
+      <input
+        type="submit"
+        className={
+          'profile__button-save ' +
+          (!isValid || !isValueSame ? 'profile__button-save_disabled' : '')
+        }
+        value="Сохранить"
+        disabled={!isValid || isFetching}
+      />
     </>
   );
 
@@ -66,7 +107,7 @@ function Profile() {
             Имя
           </label>
           <input
-            className="profile__input"
+            className={'profile__input ' + (errors.name ? 'profile__input_err' : '')}
             required
             id="name"
             name="name"
@@ -84,11 +125,12 @@ function Profile() {
             E-mail
           </label>
           <input
-            className="profile__input"
+            className={'profile__input ' + (errors.email ? 'profile__input_err' : '')}
             required
             id="email"
             name="email"
-            type="text"
+            type="email"
+            pattern="\S+@\S+\.\S+"
             dir="rtl"
             placeholder="...Ваша почта"
             onChange={handleChange}

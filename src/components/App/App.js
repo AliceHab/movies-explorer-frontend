@@ -62,7 +62,7 @@ function App() {
             <CurrentUserContext.Provider value={currentUser}>
               <Routes>
                 <Route
-                  path="/movie"
+                  path="/movies"
                   element={<ProtectedRoute element={<Movies />} isLoggedIn={isLoggedIn} />}
                   exact
                 />
@@ -75,7 +75,7 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute
-                      element={<Profile />}
+                      element={<Profile updateUserDate={checkTocken} />}
                       isLoggedIn={isLoggedIn}
                       setLoggedIn={setLoggedIn}
                     />
@@ -84,8 +84,14 @@ function App() {
                 />
 
                 <Route path="/" element={<Main />} />
-                <Route path="/signup" element={<Register />} />
-                <Route path="/signin" element={<Login setIsLogged={setLoggedIn} />} />
+                <Route
+                  path="/signup"
+                  element={<Register setIsLogged={setLoggedIn} isLoggedIn={isLoggedIn} />}
+                />
+                <Route
+                  path="/signin"
+                  element={<Login setIsLogged={setLoggedIn} isLoggedIn={isLoggedIn} />}
+                />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
               <Navigation isOpen={menuActive} />

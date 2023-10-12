@@ -5,36 +5,41 @@ import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import api from '../../utils/MainApi';
 
-function Login({ setIsLogged, setCurrentUser }) {
+function Login({ setIsLogged, isLoggedIn }) {
+  React.useEffect(() => {
+    if (isLoggedIn === true) {
+      navigate('/movies', { replace: true });
+    }
+  }, [isLoggedIn]);
+
   const { values, handleChange, errors, isValid, resetForm } = useForm({
     email: '',
     password: '',
   });
   const navigate = useNavigate();
+  const [isFetching, setIsFetching] = React.useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsFetching(true);
 
     api
       .loginUser(values.password, values.email)
       .then((res) => {
         if (res) {
-          // setShowInfo(true);
           setIsLogged(true);
-          // setTextInfo("Входим...");
           setTimeout(() => {
-            navigate('/movie', { replace: true });
-            // setEmail(values.email);
+            navigate('/movies', { replace: true });
           }, 2000);
         }
       })
       .catch((err) => {
-        // setShowInfo(true);
         setIsLogged(false);
         console.error(err);
       })
       .finally(() => {
         resetForm();
+        setIsFetching(false);
       });
   }
 
@@ -47,6 +52,7 @@ function Login({ setIsLogged, setCurrentUser }) {
       linkTitle={'Регистрация'}
       handleSubmit={handleSubmit}
       isValid={isValid}
+      isFetching={isFetching}
     >
       <label htmlFor="email" className="auth-form__label">
         E-mail
@@ -56,10 +62,11 @@ function Login({ setIsLogged, setCurrentUser }) {
         required
         id="email"
         name="email"
-        type="text"
+        type="email"
         placeholder="Почта.."
         value={values.email || ''}
         onChange={handleChange}
+        pattern="\S+@\S+\.\S+"
       />
       <span className="auth-form__input-error auth-form__email-input-error">{errors.email}</span>
       <label htmlFor="password" className="auth-form__label">

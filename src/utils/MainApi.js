@@ -1,3 +1,5 @@
+import { URL_PROJECT_API } from '../utils/constants';
+
 class MainApi {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -118,7 +120,7 @@ class MainApi {
 }
 
 const api = new MainApi({
-  baseUrl: 'https://api.alicehab.nomoredomainsicu.ru',
+  baseUrl: URL_PROJECT_API,
   headers: {
     'Content-Type': 'application/json',
   },

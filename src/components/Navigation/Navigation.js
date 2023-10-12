@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const handleClickRedirect = (url) => {
   window.location.href = url;
@@ -19,19 +20,19 @@ function Navigation({ isOpen }) {
       <div className="navigation__wrapper">
         <ul className="navigation__list">
           <li>
-            <a href="/" className={'navigation__links'}>
+            <Link to="/" className={'navigation__links'}>
               Главная
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/movie" className={'navigation__links'}>
+            <Link to="/movie" className={'navigation__links'}>
               Фильмы
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/saved-movies" className={'navigation__links'}>
+            <Link to="/saved-movies" className={'navigation__links'}>
               Сохраненные фильмы
-            </a>
+            </Link>
           </li>
         </ul>
         <input

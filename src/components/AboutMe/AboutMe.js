@@ -1,5 +1,6 @@
 import React from 'react';
 import photo from '../../images/aboutme__photo.png';
+import { Link } from 'react-router-dom';
 
 function AboutMe() {
   return (
@@ -14,14 +15,14 @@ function AboutMe() {
             Родился в городе Кирове. C 2023 года живу в Санкт-Петербурге. До программирования
             работал 2 года SEO-специалистом, продвигая сайты в поисковых системах.
           </p>
-          <a
+          <Link
             className="about-me__link"
-            href="https://github.com/AliceHab"
+            to="https://github.com/AliceHab"
             target="_blank"
             rel="noreferrer"
           >
             Github
-          </a>
+          </Link>
         </div>
         <img src={photo} className="about-me__photo" alt="Максим Ефремов" />
       </div>

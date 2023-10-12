@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import api from '../../utils/MainApi';
 import convertToHoursAndMinutes from '../../utils/convertToHoursAndMinutes';
 
-function MoviesCard({ card, savedMovies, refreshList }) {
+function MoviesCard({ card, savedMovies, refreshList, getSavedMovies, filteredMovies }) {
   const location = useLocation();
   const { pathname } = location;
 
@@ -36,6 +36,7 @@ function MoviesCard({ card, savedMovies, refreshList }) {
       .then((res) => {
         if (res) {
           setIsSaved(true);
+          getSavedMovies();
         }
       })
       .catch((err) => {
@@ -52,7 +53,9 @@ function MoviesCard({ card, savedMovies, refreshList }) {
         .then((res) => {
           if (res) {
             setIsSaved(false);
-            refreshList();
+            refreshList &&
+              refreshList(filteredMovies.filter((item) => item._id !== movieToDelete._id));
+            // обновляем массив карточек, исключая удаленную
           }
         })
         .catch((err) => {
@@ -63,7 +66,7 @@ function MoviesCard({ card, savedMovies, refreshList }) {
 
   return (
     <li className="movies-card">
-      <a href={card.trailerLink} target="_blank" rel="noreferrer">
+      <Link to={card.trailerLink} target="_blank" rel="noreferrer">
         <img
           className="movies-card__image"
           src={
@@ -73,7 +76,7 @@ function MoviesCard({ card, savedMovies, refreshList }) {
           }
           alt={card.nameRU}
         />
-      </a>
+      </Link>
       <div className="movies-card__bottom">
         <div className="movies-card__description-wrapper">
           <h2 className="movies-card__title">{card.nameRU}</h2>
