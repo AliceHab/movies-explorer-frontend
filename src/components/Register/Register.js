@@ -35,6 +35,7 @@ function Register({ setIsLogged, isLoggedIn }) {
             .then((res) => {
               if (res) {
                 setIsLogged(true);
+                resetForm();
                 setTimeout(() => {
                   navigate('/movies', { replace: true });
                 }, 2000);
@@ -44,18 +45,16 @@ function Register({ setIsLogged, isLoggedIn }) {
               setIsLogged(false);
               console.error(err);
             })
-            .finally(() => {
-              resetForm();
-              setIsFetching(false);
-            });
+            .finally(() => {});
         }
+        resetForm();
       })
       .catch((err) => {
         setFetchError(err);
         console.error(err);
       })
       .finally(() => {
-        resetForm();
+        setIsFetching(false);
       });
   }
 
