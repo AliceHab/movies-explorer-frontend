@@ -15,7 +15,7 @@ function filterByDuration(movies) {
 
 // Общая функция фильтрации
 export default function filterMovies(movies, query, isShort) {
-  console.log('Вызвана фильтрация');
+  console.log('Вызвана фильтрация', movies, query, isShort);
   if (Array.isArray(movies)) {
     let filteredMovies = filterByText(movies, query);
     if (String(isShort) === 'true') {
