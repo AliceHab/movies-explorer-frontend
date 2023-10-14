@@ -47,6 +47,7 @@ function Movies() {
       await getBeatfilmMovies();
     } else {
       setBeatfilmMovie(initialMovies);
+      console.log('Current state:', initialMovies, beatfilmMovie);
       setFilteredMovies(filterMovies(beatfilmMovie, values.query, isShort));
     }
   }
