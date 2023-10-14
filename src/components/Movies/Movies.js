@@ -48,7 +48,7 @@ function Movies() {
     } else {
       setBeatfilmMovie(initialMovies);
       console.log('Current state:', initialMovies, beatfilmMovie);
-      setFilteredMovies(filterMovies(beatfilmMovie, values.query, isShort));
+      setFilteredMovies(filterMovies(initialMovies, values.query, isShort));
     }
   }
 
