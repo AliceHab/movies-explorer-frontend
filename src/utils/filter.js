@@ -15,12 +15,14 @@ function filterByDuration(movies) {
 
 // Общая функция фильтрации
 export default function filterMovies(movies, query, isShort) {
+  console.log('Вызвана фильтрация');
   if (Array.isArray(movies)) {
     let filteredMovies = filterByText(movies, query);
     if (String(isShort) === 'true') {
       // проверка true или false, поскольку localStorage сохраняется только строки
       filteredMovies = filterByDuration(filteredMovies);
     }
+    console.log(console.log('Возврат отфильтрованных фильмов'));
     return filteredMovies;
   }
 }
