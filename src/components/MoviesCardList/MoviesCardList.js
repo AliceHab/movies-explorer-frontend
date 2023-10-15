@@ -11,7 +11,13 @@ import {
   TABLED_AND_MOBILE_ADD_MORE_CARD,
 } from '../../utils/constants';
 
-function MoviesCardList({ savedMovies, refreshList, filteredMovies, getSavedMovies }) {
+function MoviesCardList({
+  savedMovies,
+  refreshList,
+  filteredMovies,
+  getSavedMovies,
+  setSavedMovies,
+}) {
   let resizeTimeout;
 
   const location = useLocation();
@@ -85,6 +91,7 @@ function MoviesCardList({ savedMovies, refreshList, filteredMovies, getSavedMovi
                 refreshList={refreshList}
                 getSavedMovies={getSavedMovies}
                 filteredMovies={filteredMovies}
+                setSavedMovies={setSavedMovies}
               />
             );
           })}

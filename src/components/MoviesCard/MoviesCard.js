@@ -4,21 +4,30 @@ import { useLocation, Link } from 'react-router-dom';
 import api from '../../utils/MainApi';
 import convertToHoursAndMinutes from '../../utils/convertToHoursAndMinutes';
 
-function MoviesCard({ card, savedMovies, refreshList, getSavedMovies, filteredMovies }) {
+function MoviesCard({
+  card,
+  savedMovies,
+  refreshList,
+  getSavedMovies,
+  filteredMovies,
+  setSavedMovies,
+}) {
   const location = useLocation();
   const { pathname } = location;
-
   const [isSaved, setIsSaved] = React.useState(false);
+  const [cardId, setCardId] = React.useState('');
 
   function checkIsSaved() {
     if (savedMovies && savedMovies.some((i) => i.nameRU === card.nameRU)) {
       setIsSaved(true);
+    } else {
+      setIsSaved(false);
     }
   }
 
   React.useEffect(() => {
     checkIsSaved();
-  }, []);
+  }, [savedMovies]);
 
   const isSavedMovie = pathname === '/saved-movies';
 
@@ -36,7 +45,8 @@ function MoviesCard({ card, savedMovies, refreshList, getSavedMovies, filteredMo
       .then((res) => {
         if (res) {
           setIsSaved(true);
-          getSavedMovies();
+          getSavedMovies(card);
+          setCardId(res.data._id);
         }
       })
       .catch((err) => {
@@ -47,14 +57,14 @@ function MoviesCard({ card, savedMovies, refreshList, getSavedMovies, filteredMo
   function deleteMovie() {
     const movieToDelete = savedMovies?.find((i) => i.nameRU === card.nameRU) || card;
 
-    if (movieToDelete) {
+    if (movieToDelete._id || cardId) {
+      const idToDelete = movieToDelete._id || cardId;
       api
-        .deleteMovie(movieToDelete._id)
+        .deleteMovie(idToDelete)
         .then((res) => {
           if (res) {
             setIsSaved(false);
-            refreshList &&
-              refreshList(filteredMovies.filter((item) => item._id !== movieToDelete._id));
+            refreshList && refreshList(filteredMovies.filter((item) => item._id !== idToDelete));
             // обновляем массив карточек, исключая удаленную
           }
         })

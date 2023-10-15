@@ -65,6 +65,10 @@ function Movies() {
       });
   }
 
+  function addLikedMovie(likedMovie) {
+    setSavedMovies((prevSavedMovies) => [...prevSavedMovies, likedMovie]);
+  }
+
   function setLocalStorage() {
     localStorage.setItem('query', values.query);
     localStorage.setItem('isShort', isShort);
@@ -117,7 +121,8 @@ function Movies() {
         <MoviesCardList
           savedMovies={savedMovies}
           filteredMovies={filteredMovies}
-          getSavedMovies={getSavedMovies}
+          getSavedMovies={addLikedMovie}
+          setSavedMovies={setSavedMovies}
         />
       )}
     </main>
