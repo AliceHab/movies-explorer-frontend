@@ -122,7 +122,6 @@ function Movies() {
           savedMovies={savedMovies}
           filteredMovies={filteredMovies}
           getSavedMovies={addLikedMovie}
-          setSavedMovies={setSavedMovies}
         />
       )}
     </main>

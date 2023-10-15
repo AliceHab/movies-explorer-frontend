@@ -65,6 +65,8 @@ function MoviesCard({
           if (res) {
             setIsSaved(false);
             refreshList && refreshList(filteredMovies.filter((item) => item._id !== idToDelete));
+            setSavedMovies &&
+              setSavedMovies(filteredMovies.filter((item) => item._id !== idToDelete));
             // обновляем массив карточек, исключая удаленную
           }
         })

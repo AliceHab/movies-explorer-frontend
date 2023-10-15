@@ -19,6 +19,8 @@ function SavedMovies() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
+  console.log(filteredMovies);
+
   function getSavedMovies() {
     setIsLoading(true);
     setError('');
@@ -70,7 +72,11 @@ function SavedMovies() {
       {isLoading ? (
         <Preloader error={error} />
       ) : (
-        <MoviesCardList refreshList={setFilteredMovies} filteredMovies={filteredMovies} />
+        <MoviesCardList
+          refreshList={setFilteredMovies}
+          filteredMovies={filteredMovies}
+          setSavedMovies={setSavedMovies}
+        />
       )}
       <div className="movies-card-list__divider"></div>
     </>
