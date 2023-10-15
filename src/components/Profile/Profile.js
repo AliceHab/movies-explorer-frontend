@@ -6,8 +6,9 @@ import api from '../../utils/MainApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile({ updateUserDate }) {
-  const currentUser = React.useContext(CurrentUserContext);
+function Profile() {
+  const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
+  console.log(currentUser);
 
   function signOut() {
     api.signOut();
@@ -52,7 +53,8 @@ function Profile({ updateUserDate }) {
       .then((res) => {
         setEditMessage('Данные изменены');
         setEditStatus(true);
-        updateUserDate();
+        setValues({ name: res.data.name, email: res.data.email });
+        setCurrentUser(res);
       })
       .catch((err) => {
         console.error(err);

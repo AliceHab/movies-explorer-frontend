@@ -19,11 +19,6 @@ import api from '../../utils/MainApi';
 import { AppContext } from '../../contexts/AppContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-// Перед деплоем
-// 1. Поменять на бэке контроллер user и updateUser. Должен быть email вместо about
-// 1.1. Обновить валидацию в routes, добавив email
-// 2.2 Обновить схему фильма и валидацию в роуте. Убрать для картинки и тумбнейл ссылку
-
 function App() {
   const [menuActive, setMenuActive] = useState(false);
   const [beatfilmMovie, setBeatfilmMovie] = useState({});
@@ -59,7 +54,7 @@ function App() {
         <div className="page">
           <Header active={menuActive} setActive={setMenuActive} isLoggedIn={isLoggedIn} />
           <AppContext.Provider value={{ beatfilmMovie, setBeatfilmMovie }}>
-            <CurrentUserContext.Provider value={currentUser}>
+            <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
               <Routes>
                 <Route
                   path="/movies"
@@ -75,7 +70,7 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute
-                      element={<Profile updateUserDate={checkTocken} />}
+                      element={<Profile />}
                       isLoggedIn={isLoggedIn}
                       setLoggedIn={setLoggedIn}
                     />
