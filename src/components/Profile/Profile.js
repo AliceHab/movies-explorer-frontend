@@ -8,7 +8,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile() {
   const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
-  console.log(currentUser);
 
   function signOut() {
     api.signOut();
@@ -47,6 +46,13 @@ function Profile() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsFetching(true);
+    function delayForMessage() {
+      setTimeout(() => {
+        setIsEdit(false);
+        setIsFetching(false);
+        setEditMessage('');
+      }, 1500);
+    }
 
     api
       .editUserInfo(values.name, values.email)
@@ -55,17 +61,14 @@ function Profile() {
         setEditStatus(true);
         setValues({ name: res.data.name, email: res.data.email });
         setCurrentUser(res);
+        delayForMessage();
       })
       .catch((err) => {
         console.error(err);
         setEditMessage('Произошла ошибка');
         setEditStatus(false);
+        delayForMessage();
       });
-
-    setTimeout(() => {
-      setIsEdit(false);
-      setIsFetching(false);
-    }, 1500);
   }
 
   // Редактировать
