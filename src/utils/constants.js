@@ -15,7 +15,7 @@ export const URL_GITHUB = 'https://github.com/AliceHab';
 export const FOOTER_COPYRIGHT = 'Учебный проект Яндекс.Практикум х BeatFilm.';
 
 // Ширина экрана и число карточек для MoviesCardList
-export const DESKTOP_SCREEN_WIDTH = 1280;
+export const DESKTOP_SCREEN_WIDTH = 1000;
 export const TABLET_SCREEN_WIDTH = 600;
 
 export const DESKTOP_CARD_NUMBER = 16;

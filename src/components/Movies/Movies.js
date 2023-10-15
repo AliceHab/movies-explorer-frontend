@@ -24,8 +24,6 @@ function Movies() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
-  console.log(unfilteredMovies);
-
   async function getBeatfilmMovies() {
     setIsLoading(true);
     setError('');
@@ -51,7 +49,6 @@ function Movies() {
       await getBeatfilmMovies();
     } else {
       setBeatfilmMovie(initialMovies);
-      setUnfilteredMovies(initialMovies);
       setFilteredMovies(filterMovies(initialMovies, values.query));
       setUnfilteredMovies(filterMovies(initialMovies, values.query));
     }
@@ -92,7 +89,7 @@ function Movies() {
     } else {
       setFilteredMovies(unfilteredMovies);
     }
-  }, [isShort, filteredMovies]);
+  }, [isShort, unfilteredMovies]);
 
   React.useEffect(() => {
     setTimeout(() => setLocalStorage(), 500); // не записываем пустые значения после монтирования
