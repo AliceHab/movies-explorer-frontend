@@ -70,7 +70,7 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute
-                      element={<Profile />}
+                      element={<Profile setLoggedIn={setLoggedIn} />}
                       isLoggedIn={isLoggedIn}
                       setLoggedIn={setLoggedIn}
                     />

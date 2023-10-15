@@ -6,12 +6,13 @@ import api from '../../utils/MainApi';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Profile() {
+function Profile({ setLoggedIn }) {
   const { currentUser, setCurrentUser } = React.useContext(CurrentUserContext);
 
   function signOut() {
     api.signOut();
     localStorage.clear();
+    setLoggedIn(false);
   }
 
   const [isEdit, setIsEdit] = React.useState(false);
