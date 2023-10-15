@@ -8,12 +8,13 @@ import { AppContext } from '../../contexts/AppContext';
 
 import api from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
-import filterMovies from '../../utils/filter';
+import { filterMovies, filterByDuration } from '../../utils/filter';
 
 import useForm from '../../hooks/useForm';
 
 function Movies() {
   const { beatfilmMovie, setBeatfilmMovie } = React.useContext(AppContext);
+  const [unfilteredMovies, setUnfilteredMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isShort, setIsShort] = React.useState(false);
@@ -23,6 +24,8 @@ function Movies() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
+  console.log(unfilteredMovies);
+
   async function getBeatfilmMovies() {
     setIsLoading(true);
     setError('');
@@ -31,7 +34,8 @@ function Movies() {
       const loadedBeatfilmMovies = await moviesApi.getBeatfilmMovies();
       setBeatfilmMovie(loadedBeatfilmMovies);
       localStorage.setItem('movies', JSON.stringify(loadedBeatfilmMovies));
-      setFilteredMovies(filterMovies(loadedBeatfilmMovies, values.query, isShort));
+      setUnfilteredMovies(filterMovies(loadedBeatfilmMovies, values.query));
+      setFilteredMovies(filterMovies(loadedBeatfilmMovies, values.query));
       setIsLoading(false);
     } catch (err) {
       console.error(err);
@@ -47,8 +51,9 @@ function Movies() {
       await getBeatfilmMovies();
     } else {
       setBeatfilmMovie(initialMovies);
-      console.log('Current state:', initialMovies, beatfilmMovie);
-      setFilteredMovies(filterMovies(initialMovies, values.query, isShort));
+      setUnfilteredMovies(initialMovies);
+      setFilteredMovies(filterMovies(initialMovies, values.query));
+      setUnfilteredMovies(filterMovies(initialMovies, values.query));
     }
   }
 
@@ -82,6 +87,14 @@ function Movies() {
   }, []);
 
   React.useEffect(() => {
+    if (String(isShort) === 'true') {
+      setFilteredMovies(filterByDuration(filteredMovies, isShort));
+    } else {
+      setFilteredMovies(unfilteredMovies);
+    }
+  }, [isShort, filteredMovies]);
+
+  React.useEffect(() => {
     setTimeout(() => setLocalStorage(), 500); // не записываем пустые значения после монтирования
   }, [values.query, isShort]);
 
@@ -99,6 +112,7 @@ function Movies() {
         isShort={isShort}
         setFilerShort={setIsShort}
         searchHandler={loadOrGetBeatMovies}
+        filterByDuration={filterByDuration}
       />
       {isLoading ? (
         <Preloader error={error} />

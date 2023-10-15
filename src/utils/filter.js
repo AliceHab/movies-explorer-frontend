@@ -9,20 +9,18 @@ function filterByText(movies, query) {
 }
 
 // Фильтрация по длительности фильма (короткометражки)
-function filterByDuration(movies) {
+export function filterByDuration(movies, isShort) {
   return movies.filter((movie) => movie.duration <= 40);
 }
 
 // Общая функция фильтрации
-export default function filterMovies(movies, query, isShort) {
-  console.log('Вызвана фильтрация', movies, query, isShort);
+export function filterMovies(movies, query, isShort) {
   if (Array.isArray(movies)) {
     let filteredMovies = filterByText(movies, query);
     if (String(isShort) === 'true') {
-      // проверка true или false, поскольку localStorage сохраняется только строки
+      // проверка true или false, поскольку localStorage сохраняет только строки
       filteredMovies = filterByDuration(filteredMovies);
     }
-    console.log(console.log('Возврат отфильтрованных фильмов'));
     return filteredMovies;
   }
 }

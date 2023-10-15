@@ -7,7 +7,7 @@ import filterMovies from '../../utils/filter';
 
 import { AppContext } from '../../contexts/AppContext';
 
-function SearchForm({ query, setQuery, isShort, setFilerShort, searchHandler }) {
+function SearchForm({ query, setQuery, isShort, setFilerShort, searchHandler, filterByDuration }) {
   const [isSearchButtonClicked, setIsSearchButtonClicked] = React.useState(false);
 
   const handleSearchClick = () => {
@@ -43,7 +43,12 @@ function SearchForm({ query, setQuery, isShort, setFilerShort, searchHandler }) 
           }}
         />
       </form>
-      <FilterCheckbox text="Короткометражки" isShort={isShort} setFilerShort={setFilerShort} />
+      <FilterCheckbox
+        text="Короткометражки"
+        isShort={isShort}
+        setFilerShort={setFilerShort}
+        filterByDuration={filterByDuration}
+      />
     </section>
   );
 }

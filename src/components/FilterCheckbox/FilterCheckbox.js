@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FilterCheckbox({ text, isShort, setFilerShort }) {
+function FilterCheckbox({ text, isShort, setFilerShort, filterByDuration }) {
   return (
     <div className="search-form__switch-wrapper">
       <input
