@@ -2,11 +2,6 @@ import React from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-import moviesApi from '../../utils/MoviesApi';
-import filterMovies from '../../utils/filter';
-
-import { AppContext } from '../../contexts/AppContext';
-
 function SearchForm({ query, setQuery, isShort, setFilerShort, searchHandler, filterByDuration }) {
   const [isSearchButtonClicked, setIsSearchButtonClicked] = React.useState(false);
 
