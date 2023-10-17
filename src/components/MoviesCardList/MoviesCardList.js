@@ -28,7 +28,7 @@ function MoviesCardList({
 
   React.useEffect(() => {
     cardsToRender(pageWidth, setItemsToShow);
-  }, []);
+  }, [filteredMovies]);
 
   React.useEffect(() => {
     cardsToAddMore(pageWidth, setItemsToAddMore, itemsToShow, setItemsToShow);
