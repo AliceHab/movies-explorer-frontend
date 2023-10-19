@@ -26,8 +26,6 @@ function MoviesCardList({
     }, 300);
   });
 
-  console.log(pageWidth);
-
   React.useEffect(() => {
     cardsToRender(pageWidth, setItemsToShow);
   }, [filteredMovies]);
