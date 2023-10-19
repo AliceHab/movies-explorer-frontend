@@ -65,8 +65,21 @@
 .auth-form__input-error {
   margin-top: 10px;
   display: block;
-  visibility: hidden;
+  white-space: wrap;
+  width: 100%;
   min-height: 12px;
+  color: #ee3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.auth-form__fetch-error {
+  margin-top: auto;
+  display: block;
+  min-height: 12px;
+  text-align: center;
   color: #ee3465;
   font-size: 10px;
   font-style: normal;
@@ -87,6 +100,10 @@
   line-height: normal;
   transition: opacity 0.3s;
   cursor: pointer;
+}
+
+.auth-form__button_disabled {
+  background: #f9f9f9;
 }
 
 .auth-form__button:hover {
@@ -153,6 +170,10 @@
   }
 
   .auth-form__input {
+    width: 260px;
+  }
+
+  .auth-form__input-error {
     width: 260px;
   }
 

@@ -49,9 +49,9 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 27px;
   }
-  .movies-card-list__container > :nth-child(n + 9) {
+  /* .movies-card-list__container > :nth-child(n + 9) {
     display: none;
-  }
+  } */
   .search-form__bottom-line {
     margin-top: 37px;
   }
@@ -68,9 +68,9 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 20px 27px;
   }
-  .movies-card-list__container > :nth-child(n + 6) {
+  /* .movies-card-list__container > :nth-child(n + 6) {
     display: none;
-  }
+  } */
   .movies-card-list__btn-more {
     margin: 80px 0 78px;
   }

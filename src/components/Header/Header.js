@@ -1,12 +1,12 @@
 import logo from '../../images/logo.svg';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const Logo = () => {
   return (
-    <a href="/">
+    <Link to="/">
       <img src={logo} alt="Лого" className="header__logo" />
-    </a>
+    </Link>
   );
 };
 
@@ -14,7 +14,7 @@ const handleClickRedirect = (url) => {
   window.location.href = url;
 };
 
-function Header({ active, setActive }) {
+function Header({ active, setActive, isLoggedIn }) {
   const toggleActive = () => {
     setActive(!active);
   };
@@ -24,11 +24,11 @@ function Header({ active, setActive }) {
 
   // Определяем цвет шапки
   const isLightTheme =
-    pathname === '/movie' || pathname === '/profile' || pathname === '/saved-movies';
+    pathname === '/movies' || pathname === '/profile' || pathname === '/saved-movies';
 
   // Выводим на определенных страницах
   const isMovieOrMain =
-    pathname === '/movie' ||
+    pathname === '/movies' ||
     pathname === '/saved-movies' ||
     pathname === '/' ||
     pathname === '/profile';
@@ -82,37 +82,37 @@ function Header({ active, setActive }) {
     </div>
   );
 
-  // Временна переменная, заменяющая проверку авторизации
-  let linkText = '';
+  // // Временна переменная, заменяющая проверку авторизации
+  // let linkText = '';
 
   return (
     <>
       {isMovieOrMain && (
         <header className={'header ' + (isLightTheme ? 'header_theme_ligth' : '')}>
           <Logo />
-          {linkText && (
-            <nav className={'header__nav'}>
+          {isLoggedIn && (
+            <nav className="header__nav">
               <ul className="header__list">
                 <li>
-                  <a
-                    href="/movie"
+                  <Link
+                    to="/movies"
                     className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
                   >
                     Фильмы
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/saved-movies"
+                  <Link
+                    to="/saved-movies"
                     className={'header__links ' + (isLightTheme ? 'header__links_theme_light' : '')}
                   >
                     Сохраненные фильмы
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
           )}
-          {linkText ? accountBtn : nonAuthBtn}
+          {isLoggedIn ? accountBtn : nonAuthBtn}
         </header>
       )}
     </>

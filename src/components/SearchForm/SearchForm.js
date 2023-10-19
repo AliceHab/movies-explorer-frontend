@@ -2,21 +2,48 @@ import React from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
+function SearchForm({ query, setQuery, isShort, setFilerShort, searchHandler, filterByDuration }) {
+  const [isSearchButtonClicked, setIsSearchButtonClicked] = React.useState(false);
+
+  const handleSearchClick = () => {
+    setIsSearchButtonClicked(true);
+  };
+
+  React.useEffect(() => {
+    if (isSearchButtonClicked) {
+      searchHandler();
+      setIsSearchButtonClicked(false);
+    }
+  }, [isSearchButtonClicked]);
+
   return (
     <section className="search-form">
       <form className="search-form__form" name="search">
         <input
           type="text"
           id="name"
-          name="name"
+          name="query"
           className="search-form__input"
           placeholder="Фильм"
+          onChange={setQuery}
+          value={query || ''}
         />
-        <input className="search-form__search-btn" type="submit" value="ㅤ" />
+        <input
+          className="search-form__search-btn"
+          type="submit"
+          value="ㅤ"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSearchClick();
+          }}
+        />
       </form>
-      <FilterCheckbox text="Короткометражки" />
-      {/* <div className='search-form__bottom-line'></div> */}
+      <FilterCheckbox
+        text="Короткометражки"
+        isShort={isShort}
+        setFilerShort={setFilerShort}
+        filterByDuration={filterByDuration}
+      />
     </section>
   );
 }

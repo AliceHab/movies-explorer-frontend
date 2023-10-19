@@ -1,9 +1,15 @@
 import React from 'react';
 
-function FilterCheckbox({ text }) {
+function FilterCheckbox({ text, isShort, setFilerShort, filterByDuration }) {
   return (
     <div className="search-form__switch-wrapper">
-      <input type="checkbox" className="search-form__switch" id="switch" />
+      <input
+        type="checkbox"
+        className={'search-form__switch'}
+        id="switch"
+        checked={String(isShort) === 'true'}
+        onChange={(e) => setFilerShort(e.target.checked)}
+      />
       <label className="search-form__label-switch" htmlFor="switch">
         Переключатель
       </label>
