@@ -14,7 +14,7 @@ function MoviesCardList({
   const location = useLocation();
   const { pathname } = location;
   const isMovie = pathname === '/movies';
-  const [pageWidth, setPageWidth] = React.useState(document.documentElement.scrollWidth);
+  const [pageWidth, setPageWidth] = React.useState(document.documentElement.clientWidth);
   const [itemsToShow, setItemsToShow] = React.useState(0);
   const [itemsToAddMore, setItemsToAddMore] = React.useState(0);
 
@@ -25,6 +25,8 @@ function MoviesCardList({
       setPageWidth(document.documentElement.scrollWidth);
     }, 300);
   });
+
+  console.log(pageWidth);
 
   React.useEffect(() => {
     cardsToRender(pageWidth, setItemsToShow);

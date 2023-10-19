@@ -9,7 +9,7 @@ import {
 } from './constants';
 
 export function cardsToRender(pageWidth, setItemsToShow) {
-  if (pageWidth >= DESKTOP_SCREEN_WIDTH) {
+  if (pageWidth > DESKTOP_SCREEN_WIDTH) {
     setItemsToShow(DESKTOP_CARD_NUMBER);
   } else if (pageWidth >= TABLET_SCREEN_WIDTH) {
     setItemsToShow(TABLET_CARD_NUMBER);
@@ -20,7 +20,7 @@ export function cardsToRender(pageWidth, setItemsToShow) {
 
 export function cardsToAddMore(pageWidth, setItemsToAddMore, itemsToShow, setItemsToShow) {
   let newItemsToAddMore;
-  if (pageWidth >= DESKTOP_SCREEN_WIDTH) {
+  if (pageWidth > DESKTOP_SCREEN_WIDTH) {
     newItemsToAddMore = DESKTOP_ADD_MORE_CARD;
   } else if (pageWidth >= TABLET_SCREEN_WIDTH) {
     newItemsToAddMore = TABLED_AND_MOBILE_ADD_MORE_CARD;
